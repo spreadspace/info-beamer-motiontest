@@ -14,12 +14,13 @@ local POP = gl.popMatrix
 
 local QSIZE = 0.16
 local QMOVESCALE = 0.42
+local QSPEED=0.5
 
 queru = resource.load_image('queru.png')
 
 local function queruPos(t, aspect)
-    local dx = aspect*sin(t)
-    local dy = cos(t)
+    local dx = aspect*sin(QSPEED * t)
+    local dy = cos(QSPEED * t)
     return QMOVESCALE * (1 + (QSIZE/2)) * dx, QMOVESCALE * dy
 end
 
