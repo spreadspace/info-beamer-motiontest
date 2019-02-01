@@ -13,7 +13,7 @@ local modf = math.modf
 local PUSH = gl.pushMatrix
 local POP = gl.popMatrix
 
-local TSIZE = 0.2
+local TSIZE = 64
 
 local QSIZE = 0.42
 local QSPEED = 0.42
@@ -37,15 +37,15 @@ local function drawqueru(now, aspect)
     POP()
 end
 
-local function drawtime(now, aspect)
+local function drawtime(now, size)
    local th, tm, ts, tms
    th, tm = modf((now % 3600)/3600)
    tm, ts = modf(tm*60)
    ts, tms = modf(ts*60)
    tms = tms*1000
    timestr = string.format("%02d:%02d:%02d.%03d", th, tm, ts, tms)
-   w = font:width(timestr, TSIZE)
-   font:write(-w/2, -TSIZE/2, timestr, TSIZE, 1,1,1,1)
+   w = font:width(timestr, size)
+   font:write(WIDTH/2 -w/2, HEIGHT/2 - size/2, timestr, size, 1,1,1,1)
 end
 
 function node.render()
@@ -55,5 +55,6 @@ function node.render()
     gl.translate(WIDTH/2, HEIGHT/2)
     gl.scale((WIDTH/2) * (1/aspect), HEIGHT/2)
     drawqueru(now, aspect)
-    drawtime(now, aspect)
+    gl.ortho()
+    drawtime(now, HEIGHT/10)
 end
