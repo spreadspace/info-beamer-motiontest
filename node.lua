@@ -12,16 +12,16 @@ local sin = math.sin
 local PUSH = gl.pushMatrix
 local POP = gl.popMatrix
 
-local QSIZE = 0.16
-local QMOVESCALE = 0.42
-local QSPEED=0.5
+local QSIZE = 0.42
+local QSPEED = 0.42
 
 queru = resource.load_image('queru.png')
 
 local function queruPos(t, aspect)
-    local dx = aspect*sin(QSPEED * t)
+    local dx = sin(QSPEED * t)
     local dy = cos(QSPEED * t)
-    return QMOVESCALE * (1 + (QSIZE/2)) * dx, QMOVESCALE * dy
+    local qh = QSIZE/2
+    return (dx * aspect) * (1 - (qh/aspect)), dy * (1 - qh)
 end
 
 local function drawqueru(now, aspect)
@@ -39,6 +39,6 @@ function node.render()
 
     gl.ortho()
     gl.translate(WIDTH/2, HEIGHT/2)
-    gl.scale(WIDTH * (1/aspect), HEIGHT)
+    gl.scale((WIDTH/2) * (1/aspect), HEIGHT/2)
     drawqueru(now, aspect)
 end
