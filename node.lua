@@ -39,7 +39,7 @@ end
 
 local function drawtime(now, size)
    local th, tm, ts, tms
-   th, tm = modf((now % 3600)/3600)
+   th, tm = modf(now/3600)
    tm, ts = modf(tm*60)
    ts, tms = modf(ts*60)
    tms = tms*1000
