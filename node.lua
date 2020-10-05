@@ -51,6 +51,7 @@ end
 function node.render()
     aspect = aspect or (WIDTH / HEIGHT)
     local now = sys.now()
+    gl.clear(0.0, 0.0, 0.0, 1.0)
     gl.ortho()
     gl.translate(WIDTH/2, HEIGHT/2)
     gl.scale((WIDTH/2) * (1/aspect), HEIGHT/2)

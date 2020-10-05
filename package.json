@@ -2,5 +2,7 @@
     "name": "spreadspace motion test",
     "author": "equinox@spreadspace.org",
     "desc": "check if your livestream drops frames.",
-    "repository": "https://github.com/spreadspace/info-beamer-motiontest"
+    "repository": "https://github.com/spreadspace/info-beamer-motiontest",
+    "platforms": ["pi/v6", "pi/v7", "pi/v8"],
+    "version": "trunk"
 }
